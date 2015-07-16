@@ -1,5 +1,23 @@
-<ion-view view-title="Activity">
-    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
+<ion-view view-title="Activity"  >
+    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in" >
+
+        <div class="item card-item" ng-repeat="item in items" >
+            <div ui-sref="app.gallery" class="card stable-bg ink ink-dark">
+                <div class="item item-avatar item-text-wrap">
+                    <span class="avatar" style="background-image: url('img/{{item.img}}');"></span>
+                    <strong>{{iten.name}}</strong> {{item.begin}}
+                    <div class="card-footer text-right">
+                        <i class="icon ion-chatbubbles positive"></i> {{item.likes}}
+                        <i class="icon ion-heart assertive"></i> {{item.loves}}
+                        <div class="pull-left">
+                            <i class="icon ion-clock"></i> {{item.end}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--
         <div class="item card-item">
             <div ui-sref="app.gallery" class="card stable-bg ink ink-dark">
                 <div class="item item-avatar item-text-wrap">
@@ -51,5 +69,6 @@
                 </div>
             </div>
         </div>
+        -->
     </ion-content>
 </ion-view>

@@ -1,7 +1,7 @@
 /* global angular, document, window */
 'use strict';
 
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['starter.services'])
 
     .controller('AppCtrl', function ($scope, $ionicModal, $ionicPopover, $timeout) {
         // Form data for the login modal
@@ -95,7 +95,8 @@ angular.module('starter.controllers', [])
         ionicMaterialInk.displayEffect();
     })
 
-    .controller('FriendsCtrl', function ($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+    .controller('FriendsCtrl', function ($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $q) {
+
         // Set Header
         $scope.friends =
             [
@@ -130,16 +131,13 @@ angular.module('starter.controllers', [])
         $scope.$parent.setHeaderFab('left');
 
         // Delay expansion
-        //$timeout(function () {
-        //    $scope.isExpanded = true;
-        //    $scope.$parent.setExpanded(true);
-        //}, 300);
+        /*
+         $timeout(function () {
+         $scope.isExpanded = true;
+         $scope.$parent.setExpanded(true);
+         }, 300);
+         */
 
-        // Set Motion
-        ionicMaterialMotion.fadeSlideInRight();
-
-        // Set Ink
-        ionicMaterialInk.displayEffect();
     })
 
     .controller('ProfileCtrl', function ($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
@@ -167,21 +165,35 @@ angular.module('starter.controllers', [])
         ionicMaterialInk.displayEffect();
     })
 
-    .controller('ActivityCtrl', function ($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+    .controller('ActivityCtrl', function ($scope, $stateParams, $timeout, IonicService) {
+
         $scope.$parent.showHeader();
         $scope.$parent.clearFabs();
         $scope.isExpanded = true;
         $scope.$parent.setExpanded(true);
         $scope.$parent.setHeaderFab('right');
 
+        IonicService.motion($scope, 'fadeSlideIn','.animate-fade-slide-in .item',200);
+/*
         $timeout(function () {
             ionicMaterialMotion.fadeSlideIn({
                 selector: '.animate-fade-slide-in .item'
             });
         }, 200);
+*/
+
+        $scope.items = [
+            {name:'Jon Snow',begin:'knows nothing',end:'just now',likes:6,loves:13,img:'jon-snow.jpg'},
+            {name:'Jon Snow',begin:'knows nothing',end:'just now',likes:6,loves:13,img:'jon-snow.jpg'},
+            {name:'Jon Snow',begin:'knows nothing',end:'just now',likes:6,loves:13,img:'jon-snow.jpg'},
+            {name:'Jon Snow',begin:'knows nothing',end:'just now',likes:6,loves:13,img:'jon-snow.jpg'},
+            {name:'Jon Snow',begin:'knows nothing',end:'just now',likes:6,loves:13,img:'jon-snow.jpg'},
+        ];
 
         // Activate ink for controller
-        ionicMaterialInk.displayEffect();
+        //ionicMaterialInk.displayEffect();
+        IonicService.ink($scope);
+
     })
 
     .controller('GalleryCtrl', function ($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
