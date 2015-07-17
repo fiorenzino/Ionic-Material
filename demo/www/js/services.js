@@ -40,13 +40,10 @@ angular.module('starter.services', [])
 
             var service = {
 
-                ink: function () {
-                    return ink;
-                },
+                ink: ink
+                ,
 
-                motion: function () {
-                    return motion;
-                }
+                motion: motion
 
             };
 
